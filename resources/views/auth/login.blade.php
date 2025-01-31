@@ -1,4 +1,6 @@
-<x-guest-layout>
+<x-layouts.layout>
+    <div class="flex flex-row justify-center items-center min-h-full bg-gray-300">
+        <div class="bg-white p-3 rounded-2xl">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -44,4 +46,6 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+        </div>
+    </div>
+</x-layouts.layout>

@@ -1,9 +1,18 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController2;
+use App\Http\Controllers\AlumnoController;
 
-Route::view("/","welcome");
+
+Route::get("main", MainController::class);
+
+Route::resource("alumno", AlumnoController::class);
+
+
+Route::view("/","welcome")->name("home");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

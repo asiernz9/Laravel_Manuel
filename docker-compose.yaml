@@ -5,9 +5,11 @@ services:
       - db-data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root12345
-      - MYSQL_USER=alumno
-      - MYSQL_PASSWORD=alumno
-      - MYSQL_DATABASE=tienda
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    ports:
+      - ${DB_PORT}:3306
   phpmyadmin:
       image: phpmyadmin
       ports:

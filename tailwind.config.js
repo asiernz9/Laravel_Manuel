@@ -20,6 +20,8 @@ export default {
                 'main':"#DCE5F4",
                 'footer':"#000000"
             },
+
+
             height:{
                 "10v":"10vh",
                 "15v":"15vh",
