@@ -9,7 +9,7 @@ use App\Http\Controllers\AlumnoController;
 
 Route::get("main", MainController::class);
 
-Route::resource("alumno", AlumnoController::class);
+Route::resource("alumnos", AlumnoController::class);
 
 
 Route::view("/","welcome")->name("home");

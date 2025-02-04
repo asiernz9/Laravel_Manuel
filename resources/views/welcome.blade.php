@@ -28,7 +28,7 @@
                     <h2 class="card-title">Alumnos</h2>
                     <p>Visualizar Alumnos</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                        <a class="btn btn-primary" href="{{route("alumnos.index")}}">Ver Alumnos</a>
                     </div>
                 </div>
             </div>

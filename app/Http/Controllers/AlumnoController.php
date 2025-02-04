@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
 use App\Models\Alumno;
+use Illuminate\Support\Facades\Schema;
 
 class AlumnoController extends Controller
 {
@@ -13,8 +14,13 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-       $alumnos = Alumno::all();
-       return view('alumnos.index', compact('alumnos'));
+        $campos = Schema::getColumnListing("alumnos");
+        $exclude=["created_at","updated_at"];
+        $campos= array_diff($campos,$exclude);
+        $filas = Alumno::select($campos)->get();
+
+       return view('alumnos.index', compact('filas',"campos"));
+
         //
     }
 

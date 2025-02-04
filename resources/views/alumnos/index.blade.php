@@ -1,18 +1,26 @@
 <x-layouts.layout>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Edad</th>
-        </tr>
-        @foreach($alumnos as $alumno)
+    <div class="max-h-full overflow-x-auto">
+        <table class="table table-xs table-pin-rows table-pin-cols">
+            <thead>
             <tr>
-                <td>{{$alumno->nombre}}</td>
-                <td>{{$alumno->email}}</td>
-                <td>{{$alumno->edad}}</td>
+            @foreach($campos as $campo)
+                <th>{{$campo}}</th>
+            @endforeach
             </tr>
+            </thead>
+            <tbody>
+            @foreach($filas as $fila)
+                <tr>
+                    @foreach($campos as $campo)
+                        <td>{{$fila->$campo}}</td>
+                    @endforeach
 
-        @endforeach
-    </table>
+                </tr>
+
+            @endforeach
+
+            </tbody>
+        </table>
+    </div>
 
 </x-layouts.layout>
