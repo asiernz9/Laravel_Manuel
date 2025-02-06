@@ -13,4 +13,6 @@ class Alumno extends Model
     protected $table = 'alumnos';
     protected $primaryKey = 'id';
     protected $timestamp = true;
+
+    protected $fillable = ["nombre","email","edad"];
 }
