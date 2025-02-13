@@ -11,8 +11,8 @@
             </form>
         @endauth
         @guest
-                <a class="btn btn-glass" href="login">Loginn</a>
-                <a class="btn btn-glass" href="register">Register</a>
+                <a class="btn btn-glass" href="login">{{__("Login")}}</a>
+                <a class="btn btn-glass" href="register">{{__("Register")}}</a>
 
 
         @endguest

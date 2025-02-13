@@ -12,7 +12,8 @@ class LanguageController extends Controller
     public function __invoke(Request $request, string $lang)
 
     {
-        dd($lang);
+        session()->put('locale', $lang);
+        return redirect()->back();
         //
     }
 }
