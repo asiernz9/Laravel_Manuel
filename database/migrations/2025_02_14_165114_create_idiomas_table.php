@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId("alumno_id")->constrained()
             ->onDelete("cascade")
             ->onUpdate("cascade");
-            $table->enum("nivel",["Alto","Medio","Bajo"]);
+            $table->enum("nivel",["Alto","Medio","Básico"]);
             $table->enum("titulo",["A1","A2","B1","B2","C1","C2"]);
             $table->timestamps();
         });

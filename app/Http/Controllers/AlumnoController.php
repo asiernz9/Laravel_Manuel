@@ -41,6 +41,19 @@ class AlumnoController extends Controller
         $datos = request()->input();
         $alumno = new Alumno($datos);
         $alumno->save();
+        if (request()->has("idiomas")) {
+            $idiomas=collect(request()->input('idiomas'));
+            $idiomas->each(fn($idioma) => $alumno->idiomas()->create([
+                "idioma"=>$idioma,
+                "nivel" =>request()->input("nivel")[$idioma],
+                "titulo"=>request()->input("titulo")[$idioma],
+            ])
+            );
+
+
+        }
+
+
         session()->flash('mensaje','Alumno creado');
         return redirect()->route('alumnos.index');
         //
@@ -51,6 +64,7 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
+        return view('alumnos.show', compact('alumno'));
         //
     }
 
