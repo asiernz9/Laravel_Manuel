@@ -15,4 +15,7 @@ class Alumno extends Model
     protected $timestamp = true;
 
     protected $fillable = ["nombre","email","edad"];
+    public function idiomas(){
+        return $this->hasMany(Idioma::class);
+    }
 }

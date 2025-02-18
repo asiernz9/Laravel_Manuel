@@ -30,6 +30,7 @@
             @endforeach
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -58,8 +59,8 @@
                         </form>
 
 
-
                     </td>
+                        <td><a href="{{route("alumnos.show", $fila->id)}}">Ver</a></td>
 
                 </tr>
 
@@ -80,7 +81,7 @@
                 then((ok)=>{
                     if (ok){
                         document.getElementById("formulario"+id).submit();
-                        
+
                     }
             }  )
         }
