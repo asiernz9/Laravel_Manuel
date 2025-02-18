@@ -69,6 +69,7 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
+        return view ('alumnos.edit', compact('alumno'));
         //
     }
 
