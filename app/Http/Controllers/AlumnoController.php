@@ -49,11 +49,7 @@ class AlumnoController extends Controller
                 "titulo"=>request()->input("titulo")[$idioma],
             ])
             );
-
-
-        }
-
-
+       }
         session()->flash('mensaje','Alumno creado');
         return redirect()->route('alumnos.index');
         //
