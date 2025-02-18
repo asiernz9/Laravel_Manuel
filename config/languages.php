@@ -5,7 +5,7 @@ return [
     "fr"=>["name"=>"France",
            "flag"=>'🇫🇷'],
     "en"=>["name"=>"English",
-           "flag"=>'🇬🇧'],🇨
+           "flag"=>'🇬🇧'],
 ];
 
 ?>

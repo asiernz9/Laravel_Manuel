@@ -13,7 +13,11 @@ class AlumnoSeeder extends Seeder
      */
     public function run(): void
     {
-        Alumno::factory()->count(5)->create();
+        Alumno::factory()->count(5)->create()->each(function (Alumno $alumno)
+            $numero_idiomas_hablados=rand(0,4);
+            if ($numero_idiomas_hablados > 0)
+                $this->addIdiomasAlumnos($alumno, $numero_idiomas_hablados)
+        }
         //
     }
 }
