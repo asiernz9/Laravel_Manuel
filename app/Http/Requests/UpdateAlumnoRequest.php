@@ -11,7 +11,7 @@ class UpdateAlumnoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateAlumnoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nombre' => 'required|min:3|max:50',
             //
+        ];
+    }
+    public function messages(): array{
+        return [
+            "nombre.required" => "El campo nombre es obligatorio!!!!!",
         ];
     }
 }

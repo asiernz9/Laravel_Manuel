@@ -3,7 +3,8 @@
     <div class="flex flex-row justify-center items-center min-h-full bg-gray-300">
         <div class="bg-white p-3 rounded-2xl">
 
-            <form action="{{route("alumnos.store")}}" method="post">
+            <form action="{{route("alumnos.update", $alumno->id)}}" method="post">
+                @method('PUT')
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -36,16 +37,26 @@
                                     <th>Título</th>
                                 </tr>
                                 </thead>
+
                                 <tbody>
-                                @foreach(config("idiomas") as $idioma)
+
+                                @php
+                                    $idiomas = collect(config("idiomas"))->sortByDesc(
+                                        fn($idioma)=>
+                                    $alumno->idiomas->contains("idioma", $idioma)
+                                 )
+
+                                @endphp
+                                @foreach($idiomas as $idioma)
                                     <tr>
                                         <td>
                                             <input type="checkbox" value="{{$idioma}}" name="idiomas[]" id=""
+                                                {{$alumno->idiomas->contains("idioma",$idioma)? "checked":""}}
                                             >
                                                 {{$idioma}}
                                         </td>
                                         <td>
-                                            <select class="text-sm h-8 rounded-sm" name="nivel[{{$idioma}}]" id="">
+                                            <select class="text-sm h-8 rounded-sm" name="niveles[{{$idioma}}]" id="">
                                                 <option value="Básico">Básico</option>
                                                 <option value="Medio">Medio</option>
                                                 <option value="Alto">Alto</option>
@@ -54,7 +65,7 @@
 
                                         </td>
                                         <td>
-                                            <select class="text-sm h-8 rounded-sm" name="titulo[{{$idioma}}]" id="">
+                                            <select class="text-sm h-8 rounded-sm" name="titulos[{{$idioma}}]" id="">
                                                 <option value="A1">A1</option>
                                                 <option value="A2">A2</option>
                                                 <option value="C1">C1</option>

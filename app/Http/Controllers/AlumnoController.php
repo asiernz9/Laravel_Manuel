@@ -78,6 +78,28 @@ class AlumnoController extends Controller
      */
     public function update(UpdateAlumnoRequest $request, Alumno $alumno)
     {
+
+        $datos = $request->only("nombre", "email", "edad");
+        $alumno->update($datos);
+        $idiomas = $request->input("idiomas");
+        $niveles = $request->input("niveles");
+        $titulos = $request->input("titulos");
+
+        collect($idiomas)->each(fn($idioma)=>
+        $alumno->idiomas()
+            ->where("idioma",$idioma)
+            ->update([
+                "nivel" => $niveles[$idioma] ?? null,
+                "titulo" => $titulos[$idioma] ?? null
+            ])
+        );
+        session()->flash("mensaje", "alumno actualizado");
+        return redirect()->route('alumnos.index');
+
+
+
+
+
         //
     }
 
