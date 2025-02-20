@@ -41,9 +41,8 @@
                                     <tr>
                                         <td>
                                             <input type="checkbox" value="{{$idioma}}" name="idiomas[]" id=""
-                                            {{in_array($idioma,$alumno->idiomas->toArray())? "checked":""}}
                                             >
-                                            {{$idioma}}
+                                                {{$idioma}}
                                         </td>
                                         <td>
                                             <select class="text-sm h-8 rounded-sm" name="nivel[{{$idioma}}]" id="">
