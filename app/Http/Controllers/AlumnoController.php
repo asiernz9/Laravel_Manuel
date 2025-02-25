@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
 use App\Models\Alumno;
 use Illuminate\Support\Facades\Schema;
+use App\Http\Requests;
 
 class AlumnoController extends Controller
 {
@@ -41,6 +42,8 @@ class AlumnoController extends Controller
         $datos = request()->input();
         $alumno = new Alumno($datos);
         $alumno->save();
+
+        $alumno->idiomas()->destroy();
         if (request()->has("idiomas")) {
             $idiomas=collect(request()->input('idiomas'));
             $idiomas->each(fn($idioma) => $alumno->idiomas()->create([
@@ -85,7 +88,9 @@ class AlumnoController extends Controller
         $niveles = $request->input("niveles");
         $titulos = $request->input("titulos");
 
-        collect($idiomas)->each(fn($idioma)=>
+
+        collect($idiomas)->each(fn($idiomas)=>$idioma->destroy());
+        /*collect($idiomas)->each(fn($idioma)=>
         $alumno->idiomas()
             ->where("idioma",$idioma)
             ->update([
@@ -93,6 +98,7 @@ class AlumnoController extends Controller
                 "titulo" => $titulos[$idioma] ?? null
             ])
         );
+        */
         session()->flash("mensaje", "alumno actualizado");
         return redirect()->route('alumnos.index');
 
