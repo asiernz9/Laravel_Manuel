@@ -17,7 +17,8 @@
     </div>
     @endguest
     @auth
-        <div>
+        <div class="flex flex-wrap justify-center gap-4">
+            <!-- First Students Box -->
             <div class="card bg-base-100 image-full w-96 shadow-xl m-4 mx-5">
                 <figure>
                     <img
@@ -33,6 +34,21 @@
                 </div>
             </div>
 
+            <!-- Second Students Box -->
+            <div class="card bg-base-100 image-full w-96 shadow-xl m-4 mx-5">
+                <figure>
+                    <img
+                        src="{{asset("images/alumnos.jpeg")}}"
+                        alt="Alumnos" />
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title">Projectos</h2>
+                    <p>Visualizar Projectos</p>
+                    <div class="card-actions justify-end">
+                        <a class="btn btn-primary" href="{{route("projects.index")}}">Ver Projectos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endauth
-
 </x-layouts.layout>
