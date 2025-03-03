@@ -43,7 +43,7 @@ class AlumnoController extends Controller
         $alumno = new Alumno($datos);
         $alumno->save();
 
-        $alumno->idiomas()->destroy();
+        $alumno->idiomas()->delete();
         if (request()->has("idiomas")) {
             $idiomas=collect(request()->input('idiomas'));
             $idiomas->each(fn($idioma) => $alumno->idiomas()->create([

@@ -1,7 +1,8 @@
 <x-layouts.layout>
     <div class="flex flex-row justify-center items-center min-h-full bg-gray-300">
-        <div class="bg-white p-3 rounded-2xl">
-            <!-- Mostrar errores de validación -->
+        <div class="bg-white p-6 rounded-2xl w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-4 text-center">Crear Nuevo Proyecto</h2>
+            
             @if ($errors->any())
                 <div role="alert" class="alert alert-error mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
@@ -19,27 +20,48 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <div>
+                        <div class="mb-4">
                             <x-input-label for="title" value="Título del Proyecto" />
-                            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required />
+                            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" 
+                                :value="old('title')" required autofocus />
                         </div>
-                        <div>
+
+                        <div class="mb-4">
                             <x-input-label for="estimated_hours" value="Horas Previstas" />
-                            <x-text-input id="estimated_hours" class="block mt-1 w-full" type="number" name="estimated_hours" :value="old('estimated_hours')" required />
+                            <x-text-input id="estimated_hours" class="block mt-1 w-full" type="number" 
+                                name="estimated_hours" :value="old('estimated_hours')" required />
                         </div>
-                        <div>
+
+                        <div class="mb-4">
                             <x-input-label for="start_date" value="Fecha de Inicio" />
-                            <x-text-input id="start_date" class="block mt-1 w-full" type="date" name="start_date" :value="old('start_date')" required />
+                            <x-text-input id="start_date" class="block mt-1 w-full" type="date" 
+                                name="start_date" :value="old('start_date')" required />
                         </div>
-                        <div class="flex flex-row justify-between p-3">
-                            <button class="btn btn-warning" type="submit">Crear Proyecto</button>
+
+                        <div class="mb-4">
+                            <x-input-label value="Asignar Estudiantes" />
+                            <select name="alumno_ids[]" multiple class="select select-bordered w-full" size="5">
+                                @foreach(App\Models\Alumno::all() as $alumno)
+                                    <option value="{{ $alumno->id }}">
+                                        {{ $alumno->nombre }} ({{ $alumno->email }})
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="flex flex-row justify-between">
+                            <button type="submit" class="btn btn-warning">Crear Proyecto</button>
                             <a href="{{ route('projects.index') }}" class="btn btn-warning">Cancelar</a>
                         </div>
                     </div>
 
-                    <!-- Optional: Add a table or additional section here if needed -->
                     <div>
-                        <!-- You can add additional project-related information here -->
+                        <div class="bg-gray-100 p-4 rounded">
+                            <h3 class="font-semibold mb-2">Instrucciones</h3>
+                            <p>Seleccione los estudiantes que desea asignar al proyecto. 
+                               Puede seleccionar múltiples estudiantes manteniendo presionada la tecla Ctrl (Windows) 
+                               o Cmd (Mac) mientras hace clic.</p>
+                        </div>
                     </div>
                 </div>
             </form>

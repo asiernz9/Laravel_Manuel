@@ -10,50 +10,21 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view the project.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project  $project
-     * @return mixed
-     */
-    public function view(User $user, Project $project)
-    {
-        return $user->id === $project->user_id;
-    }
-
-    /**
-     * Determine whether the user can create projects.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can update the project.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project  $project
-     * @return mixed
-     */
     public function update(User $user, Project $project)
     {
+        // User can only update their own projects
         return $user->id === $project->user_id;
     }
 
-    /**
-     * Determine whether the user can delete the project.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project  $project
-     * @return mixed
-     */
     public function delete(User $user, Project $project)
     {
+        // User can only delete their own projects
+        return $user->id === $project->user_id;
+    }
+
+    public function view(User $user, Project $project)
+    {
+        // User can only view their own projects
         return $user->id === $project->user_id;
     }
 }

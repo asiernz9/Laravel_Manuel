@@ -168,3 +168,78 @@ class ValidationHeaderMiddleware
 }
 ```
 Observa cómo hemos asociado este middleware a las rutas que tengamos en el fichero api.php. Esto se hace en bootstrap/app.php cuyo contenido está mostrado anteriormente.
+
+-----------------------------------------------------
+
+# Proyecto de Gestión de Proyectos Avanzado
+
+## Implementación de Gestión de Proyectos
+
+### 1.- Estructura del Proyecto
+```bash
+# Creación de modelos y controladores
+php artisan make:model Project
+php artisan make:controller ProjectController
+php artisan make:policy ProjectPolicy
+2.- Relaciones de Datos
+Usuarios y Proyectos: Relación uno a muchos
+Proyectos y Estudiantes: Relación many-to-many
+Ejemplo de Implementación de Relaciones
+php
+// Modelo Project
+class Project extends Model
+{
+    protected $fillable = [
+        'title', 
+        'estimated_hours', 
+        'start_date',
+        'user_id'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function alumnos()
+    {
+        return $this->belongsToMany(Alumno::class, 'alumno_project');
+    }
+}
+3.- Políticas de Autorización
+php
+// Ejemplo de política de proyectos
+class ProjectPolicy
+{
+    public function update(User $user, Project $project)
+    {
+        return $user->id === $project->user_id;
+    }
+}
+4.- Características Técnicas
+Autenticación: Sistema basado en Laravel Breeze
+Validación de Datos: Validación exhaustiva en controladores
+Manejo de Fechas: Conversión flexible de fechas
+Control de Acceso: Autorización granular por usuario
+5.- Funcionalidades Implementadas
+Creación de proyectos personalizados
+Listado de proyectos por usuario autenticado
+Edición detallada de proyectos
+Eliminación de proyectos
+Asignación de estudiantes a proyectos
+Validación de permisos de usuario
+6.- Comandos de Gestión
+bash
+CopyInsert
+# Migraciones y configuración
+php artisan migrate
+php artisan make:request ProjectStoreRequest
+php artisan make:request ProjectUpdateRequest
+7.- Mejoras de Seguridad
+Restricción de acceso a proyectos
+Validación de pertenencia de proyectos
+Protección contra modificaciones no autorizadas
+8.- Próximas Mejoras
+Implementación de filtros avanzados
+Sistema de comentarios en proyectos
+Integración de notificaciones

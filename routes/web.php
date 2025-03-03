@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('projects', ProjectController::class);
+    Route::post('/projects/{project}/assign-students', [ProjectController::class, 'assignStudents'])
+        ->name('projects.assign-students');
+    Route::delete('/projects/{project}/remove-student/{alumno}', [ProjectController::class, 'removeStudentFromProject'])
+        ->name('projects.remove-student');
 });
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {

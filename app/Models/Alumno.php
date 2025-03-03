@@ -15,7 +15,15 @@ class Alumno extends Model
     protected $timestamp = true;
 
     protected $fillable = ["nombre","email","edad"];
+
     public function idiomas(){
         return $this->hasMany(Idioma::class);
+    }
+
+    // Updated relationship with Projects
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'alumno_project', 'alumno_id', 'project_id')
+            ->withTimestamps();
     }
 }
